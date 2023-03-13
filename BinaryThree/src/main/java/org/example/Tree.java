@@ -1,7 +1,4 @@
 package org.example;
-
-import java.util.Stack;
-
 public class Tree {
     int value;
     Tree left;
@@ -14,18 +11,18 @@ public class Tree {
     }
 
     int sum(Tree root) {
-        Stack<Tree> stack = new Stack<>();
-        stack.push(root);
+        MyQueue<Tree> queue = new MyQueue<>();
+        queue.add(root);
         int result = 0;
 
-        while (!stack.isEmpty()) {
-            Tree node = stack.pop();
+        while (!queue.isEmpty()) {
+            Tree node = queue.remove();
             System.out.println(node.value);
             result += node.value;
             if (node.right != null)
-                stack.push(node.right);
+                queue.add(node.right);
             if (node.left != null)
-                stack.push(node.left);
+                queue.add(node.left);
         }
         return result;
     }
