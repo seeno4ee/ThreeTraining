@@ -2,7 +2,8 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Three three = new Three(1,new Three(1,null,null),new Three(1,null,null));
-        System.out.println(three.sum());
+        Tree tree = new Tree(1,new Tree(2,null,null),new Tree(3,null,null));
+        System.out.println(tree.sum(tree));
     }
+
 }
