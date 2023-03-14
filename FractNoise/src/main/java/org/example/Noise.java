@@ -21,9 +21,17 @@ public class Noise {
         int yStart = yGrid * scale;
         int yEnd = yGridNext * scale;
 
-        float value12 = random.getRandomValue(xGrid,yGrid);
-        float value22 = random.getRandomValue(xGridNext,yGrid);
-        float value21 = random.getRandomValue(xGridNext,yGridNext);
-        float value11 = random.getRandomValue(xGrid,yGridNext);
+        float value12 = random.getRandomValue(xGrid, yGrid);
+        float value22 = random.getRandomValue(xGridNext, yGrid);
+        float value21 = random.getRandomValue(xGridNext, yGridNext);
+        float value11 = random.getRandomValue(xGrid, yGridNext);
+
+        float w12 = ((float) (xEnd - x) * (yEnd - y)) / ((xEnd - xStart) * (yEnd - yStart));
+        float w22 = ((float) (x - xStart) * (yEnd - y)) / ((xEnd - xStart) * (yEnd - yStart));
+        float w21 = ((float) (x - xStart) * (y - yStart)) / ((xEnd - xStart) * (yEnd - yStart));
+        float w11 = ((float) (xEnd - x) * (y - yStart)) / ((xEnd - xStart) * (yEnd - yStart));
+
+        return value11 * w11 + value12 * w12 + value21 * w21 + value22 * w22;
+
     }
 }
